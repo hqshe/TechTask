@@ -1,0 +1,25 @@
+﻿.budyak {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.col-md-4 {
+    width: 150%;
+}
+
+.register {
+    display: flex;
+    position: relative;
+    justify-content: center;
+}
+
+
+.registerSubmit {
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    font-size: 22px;
+    display: inline-block;
+    transition: background-color 0.5s ease;
+}
