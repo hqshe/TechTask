@@ -1,0 +1,42 @@
+﻿@model IEnumerable<TechTask.Models.UrlModel>
+
+<link rel="stylesheet" type="text/css" href="~/css/tableviewstyle.css">
+<div>
+    <div class="urls">
+        <h1 class="title">Table of all created Urls</h1>
+        <table class="tableofurls">
+            <thead>
+                <tr>
+                    <th class="columnname1">Id</th>
+                    <th class="columnname2">Long Url</th>
+                    <th class="columnname3">Short Url</th>
+                    <th class="columnname4">Info</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var url in Model)
+                {
+                    <tr>
+                        <td class="rowname1">@url.Id</td>
+                        <td class="rowname2"><a href="@url.OriginalURL">@url.OriginalURL</a></td>
+                        <td class="rowname3"><a href="@url.ShortURL">@url.ShortURL</a></td>
+                        <td class="rowname4">
+                            <form asp-action="UrlInfoView" asp-controller="UrlInfo" method="post">
+                                <input type="hidden" name="urlid" value="@url.Id" />
+                                <input type="submit" class="InfoButton" data-id="@url.Id" value="Info" />
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@{
+    var username = Context.Session.GetString("Username");
+    if(!string.IsNullOrEmpty(username)){
+        <form asp-action="UrlShortenerView" asp-controller="UrlShortener">
+            <button type="submit" class="addbutton">Create own URL</button>
+    </form>
+    }
+}

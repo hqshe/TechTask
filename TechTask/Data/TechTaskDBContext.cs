@@ -8,7 +8,6 @@ namespace TechTask.Data
     {
         public TechTaskDBContext(DbContextOptions<TechTaskDBContext> options) :base(options) { }
 
-        public DbSet<AdminModel> Admins { get; set; }
         public DbSet<UserModel> Users { get; set; }
         public DbSet<UrlModel> Urls { get; set; }
     }

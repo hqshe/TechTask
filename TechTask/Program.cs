@@ -43,9 +43,17 @@ namespace TechTask
 
             app.UseAuthorization();
 
-            app.MapControllerRoute(
-                name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                    name: "shortUrl",
+                    pattern: "{shortCode}",
+                    defaults: new { controller = "UrlShortener", action = "RedirectToLongUrl" });
+
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
+            });
 
             app.Run();
         }

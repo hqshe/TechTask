@@ -1,0 +1,22 @@
+﻿@model TechTask.Models.UrlModel
+@using TechTask.Controllers
+
+<link rel="stylesheet" type="text/css" href="~/css/urlinfostyle.css">
+
+<div class="details-container">
+    <h2>URL Details</h2>
+    <h><span>Id:</span> @Model.Id</h><br>
+    <h><span>Short URL:</span> <a href="@Model.OriginalURL">@Model.OriginalURL</a></h><br>
+    <h><span>Original URL:</span> <a href="@Model.ShortURL">@Model.ShortURL</a></h><br>
+    <h><span>Created By:</span> @Model.CreatedBy.Login</h><br>
+    <h><span>Created Date:</span> @Model.CreatedDate</h>
+    @{
+        var username = Context.Session.GetString("Username");
+        var isAdmin = Context.Session.GetInt32("IsAdmin");
+        var isAdminBool = isAdmin.HasValue && isAdmin.Value == 1;
+        if (Model.CreatedBy.Login == username || isAdminBool)
+        {
+            <button asp-action="DeleteUrl" asp-controller="UrlInfo" value="Delete">Delete</button>
+        }
+    }
+</div>

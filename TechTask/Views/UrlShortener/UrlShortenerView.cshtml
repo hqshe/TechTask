@@ -2,15 +2,19 @@
     ViewData["Title"] = "URL Shortener";
 }
 
-<h2>URL Shortener</h2>
+<link rel="stylesheet" type="text/css" href="~/css/shortenerviewstyle.css">
+<div class="container1">
+    <h2>URL Shortener</h2>
 
-<form asp-action="ShortenUrl" method="post">
-    <label for="longUrl">Enter Long URL:</label>
-    <input type="text" id="longUrl" name="longUrl" required />
-    <button type="submit">Shorten</button>
-</form>
-
-@if (ViewBag.ShortUrl != null)
-{
-    <p>Short URL: <a href="@ViewBag.ShortUrl">@ViewBag.ShortUrl</a></p>
-}
+    <form asp-action="ShortenUrl" method="post">
+        <label for="longUrl">Enter Long URL:</label>
+        <input type="text" id="longUrl" name="longUrl" required />
+        <button type="submit">Shorten</button>
+    </form>
+    <div class="shorturl">
+    @if (ViewBag.ShortUrl != null)
+    {
+        <p>Short URL: <a href="@ViewBag.ShortUrl">@ViewBag.ShortUrl</a></p>
+    }
+    </div>
+</div>

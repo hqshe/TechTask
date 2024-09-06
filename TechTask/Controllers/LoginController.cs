@@ -23,13 +23,14 @@ namespace TechTask.Controllers
             if (user_exist != null)
             {
                 HttpContext.Session.SetString("Username", user_exist.Login);
+                HttpContext.Session.SetInt32("IsAdmin", user_exist.IsAdmin ? 1 : 0);
                 return RedirectToAction("Index", "Home");
             }
             else
             {
                 ModelState.AddModelError(string.Empty, "Wrong login or password");
                 return RedirectToAction("Index", "Home");
-            }
+            } 
         }
 
         public IActionResult Logout()
